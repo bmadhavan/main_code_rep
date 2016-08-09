@@ -5,7 +5,9 @@
  *      Author: bmadhava
  */
 
-
+/* Here I will try to build a small utility around the existing
+ * string class in C++ to convert strings into different formats efficiently
+*/
 
 using namespace std;
 #include <iostream>
@@ -13,37 +15,38 @@ using namespace std;
 #include <vector>
 #include <unordered_map>
 
-#ifdef STR_REVERSE
-
-void str_reverse( string &s, int st , int en )
+/* Reverse the string blindly */
+void str_reverse( string &s, int start , int end )
 	    {
 	        char t;
-	        while ( st < en )
+	        while ( start < end )
 	        {
-	            t = s[st];
-	            s[st++] = s[en];
-	            s[en--] = t;
+	            t = s[start];
+	            s[start++] = s[end];
+	            s[end--] = t;
 	        }
 	        return;
 	    }
 
-int main()
+/* Reverse a sentence but not internally the words.
+ * Also remove any redundant spaces.
+ * Input:  My name is Robert
+ * Output: Robert is name My.
+ * */
+int StrReverseASentence( string s )
 {
-			string s="     dsf ddfssdfs fdssfsdfsdf     dfsdf      ";
 	        int size = s.length();
-	        cout << " the string is     " << s << endl;
 	        if ( size <= 2 ){
 	            if ( s[0] == ' ' )
 	                s[0] == '\0' ;
 	            return 1;
 	        }
 
-	        //Reverse entire string first.
+	        /* Reverse entire string first. */
 	        str_reverse( s, 0, size );
 
+	        /* Now reverse only words. */
 	        int i=0;
-	        int curr=0;
-	        //Now reverse only words.
 	        while ( i < size )
 	        {
 	            if ( s[i] == ' ' )
@@ -60,10 +63,9 @@ int main()
 	            i++;
 	        }
 
-	        // Remove all redundant spaces.
+	        /* Remove all redundant spaces. */
 	        i=0;
-	        curr = 0;
-
+	        int curr=0;
 	        while ( i+1 < size )
 	        {
 	            if ( s[i] == ' ' && s[i] == s[i+1] ){
@@ -73,10 +75,9 @@ int main()
 	            }
 	        }
 	        s.resize(curr);
-	        cout << " the string is     " << s << endl;
+	        cout << " the string is:'" << s <<  "'"<< endl;
 	        return 1;
 }
-#endif
 
 #ifdef STR1
 
@@ -727,7 +728,7 @@ int main()
 
 #endif
 
-
+#ifdef STROBO
 bool is_Strobogrammatic( char c ) {
     if ( c == '1' || c == '6' || c == '8' || c == '9' )
     return 1;
@@ -779,3 +780,4 @@ int main() {
     return 1;
 
 }
+#endif
