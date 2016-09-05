@@ -781,3 +781,41 @@ int main() {
 
 }
 #endif
+
+
+#ifdef ISOMORPHIC
+/*test if a pair of strings are Isomorphic
+Two strings are isomorphic if the characters in s can be replaced to get t.
+
+For example,"egg" and "add" are isomorphic, "foo" and "bar" are not.  */
+
+int main()
+{
+	string str1, str2;
+	std::cin >> str1 >> str2 ;
+	unordered_map< char, char> mymap;
+	const char * c = str1.c_str();
+
+	if ( str1.size() != str2.size() )
+	{
+		cout << " NO";
+		return 0;
+	}
+
+	for ( int i=0; i < str1.size() ; i++ )
+	{
+		if ( mymap.find( c[i] ) != mymap.end() )
+		{
+			if ( mymap[str1.at(i)] != str2[i] )
+			{
+				cout << " NO";
+				return 0;
+			}
+		} else {
+			mymap[str1.at(i)] = str2[i];
+		}
+	}
+	cout << "Yes. The inputs are ISOmorpthic" << endl;
+	return 1;
+}
+#endif
