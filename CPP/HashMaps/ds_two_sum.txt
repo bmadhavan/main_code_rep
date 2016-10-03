@@ -1,0 +1,30 @@
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution.
+Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+
+My solution: 
+Use a hashmap and loop through the list. 
+Use the current value and do a look to check if there the remainder. If so get the value ( i.e. index ) and return. 
+ vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> result; 
+        
+        if ( nums.size() < 2 )
+            return result;
+            
+        unordered_map<int, int> mmap;
+        for ( int i = 0 ; i < nums.size() ; i++ )
+        {   
+             int f = target - i;
+             unordered_map<int, int>::const_iterator got = mmap.find(f);
+             if ( got != mmap.end() )
+             {
+                result.push_back( mmap.at(f) );
+                result.push_back( i );
+                return result;
+             }
+             mmap.at(nums[i]) = i;  
+        }
+        return result;
+    }
