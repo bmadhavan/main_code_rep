@@ -1,0 +1,44 @@
+class Vector2D {
+private:
+    vector<vector<int>> VecItr;
+    vector<int> current;
+    int row;
+    int count;
+public:
+    Vector2D(vector<vector<int>>& vec2d) {
+        VecItr = vec2d;
+       if ( VecItr.size() )
+            current = VecItr[0];
+        else 
+            current = {0};
+        int row = 0;
+        int count = 0;
+    }
+
+    int next() {
+      return( current[count++] );
+    }
+
+    bool hasNext() {
+        
+        if ( count < current.size() )
+            return 1;
+ 
+        do { 
+            if ( row+1 >= VecItr.size() )
+                return 0;
+            
+            current = VecItr[++row];
+            count = 0;  
+ 
+            } while ( count >= current.size() );
+            
+        return 1;
+    }
+};
+
+/**
+ * Your Vector2D object will be instantiated and called as such:
+ * Vector2D i(vec2d);
+ * while (i.hasNext()) cout << i.next();
+ */
