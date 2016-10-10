@@ -1,0 +1,53 @@
+Move Zeroes
+iven an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].
+
+My Solution:
+Complexity: O(n)
+Count number of zeros.
+Maintain 2 index. One for 0 and one for non-zero elements and swap them.
+Finally fill zero will all the the final elements.  
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        
+        int size = nums.size();
+        int num=0; 
+        int zc=0;
+        int i=0; 
+        
+        while ( i < size )
+        {
+            if ( nums[i++] == 0)
+                ++zc;
+        }
+        if ( !zc )
+            return; 
+        
+        i=0;
+        while ( i < size && num < size )
+        {
+            while ( i < size && nums[i] !=0 )
+                i++; 
+            
+            if ( i > num )
+                num=i;
+                
+            while ( num < size && nums[num] == 0 )
+                ++num;
+    
+            if ( i < size && num < size )
+            {
+                swap(nums[i], nums[num]);
+            }
+        }
+        
+        if ( zc ) { 
+            for ( int j=(size - zc ) ; j<size ; ++j )
+                nums[j] = 0;
+        }
+    }
+};
+
