@@ -5,12 +5,8 @@ For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums sh
 
 My Solution:
 Complexity: O(n)
-Count number of zeros.
 Maintain 2 index. One for 0 and one for non-zero elements and swap them.
-Finally fill zero will all the the final elements.  
 
-class Solution {
-public:
     void moveZeroes(vector<int>& nums) {
         
         int size = nums.size();
@@ -18,15 +14,6 @@ public:
         int zc=0;
         int i=0; 
         
-        while ( i < size )
-        {
-            if ( nums[i++] == 0)
-                ++zc;
-        }
-        if ( !zc )
-            return; 
-        
-        i=0;
         while ( i < size && num < size )
         {
             while ( i < size && nums[i] !=0 )
@@ -43,11 +30,5 @@ public:
                 swap(nums[i], nums[num]);
             }
         }
-        
-        if ( zc ) { 
-            for ( int j=(size - zc ) ; j<size ; ++j )
-                nums[j] = 0;
-        }
     }
-};
 
