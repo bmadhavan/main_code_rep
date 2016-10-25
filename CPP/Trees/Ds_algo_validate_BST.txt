@@ -1,0 +1,33 @@
+Given a binary tree, determine if it is a valid binary search tree (BST).
+
+Assume a BST is defined as follows:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
+
+
+My solution: 
+Complexity : O(n)
+Solution: Walk through the tree in order and check if the current value is greater than prev value; 
+
+class Solution {
+public:
+    TreeNode* prev = NULL;
+    
+    bool isValidBST(TreeNode* root) {
+        
+        if ( !root )  return 1;
+            
+        int ret1 = isValidBST( root->left );
+        if ( !ret1 ) return 0; 
+            
+        if ( prev != NULL && prev->val >= root->val )  return 0;
+        else  prev = root;
+        
+        int ret2 = isValidBST( root->right );
+        if ( !ret2 ) return 0; 
+            
+        return 1;
+    }
+};
