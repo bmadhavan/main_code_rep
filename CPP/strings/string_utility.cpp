@@ -198,13 +198,16 @@ int main()
 		dp[temp][0]=temp;
 		temp++;
 	}
-
+	
+	/* C++ String compare returns 
+	   0 if the string is same. 
+ 	   < 0 or > 0 if not same or if it matches but strings are not of equal lengths
 
 	for (int i=1; i <= s1.size(); i++)
 	{
 		for (int j=1; j <= s2.size(); j++)
 		{
-			if(!s1.compare(i-1,1,s2,j-1,1))
+			if(!s1.compare(i-1,1,s2,j-1,1)) // Is the chars are same.
 				dp[i][j] = dp[i-1][j-1];
 			else
 				dp[i][j] = min_of_3(dp[i-1][j], dp[i-1][j-1], dp[i][j-1]) + 1;
