@@ -202,6 +202,7 @@ int main()
 	/* C++ String compare returns 
 	   0 if the string is same. 
  	   < 0 or > 0 if not same or if it matches but strings are not of equal lengths
+	*/
 
 	for (int i=1; i <= s1.size(); i++)
 	{
