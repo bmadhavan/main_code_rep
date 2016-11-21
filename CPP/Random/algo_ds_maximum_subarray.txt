@@ -8,27 +8,20 @@ Loop through the list. if the sum till the current number is < 0 then reset sum.
 
 
  int maxSubArray(vector<int>& nums) {
+        int max=0;
+        int prev,sum;
    
-        int max1=0;
-        int prev;
-   
-        if ( nums.size() == 0)
-            return 0;
+        if ( nums.size() == 0) return 0;
+        if ( nums.size() == 1) return nums.at(0);    
         
-        if ( nums.size() == 1)
-            return nums.at(0);    
-        
-        max1=nums.at(0);
-        if ( max1 > 0 )
-            prev = max1;
-        else 
-            prev =0;
+        max=nums.at(0);
+        if ( max > 0 ) prev = max;
+        else prev =0;
             
-        for ( int i=1 ; i < nums.size() ; i++ )
-        {
-            int sum = nums.at(i) + prev ;
+        for ( int i=1 ; i < nums.size() ; i++ ) {
+            sum = nums.at(i) + prev ;
             prev = sum > 0 ? sum : 0;
-            max1 = max(sum, max1);    
+            max = max(sum, max);    
         }
-        return max1;
+        return max;
     }
