@@ -11,7 +11,7 @@ public:
        int lps_len=0;
        for ( int i=1; i < needle.length() ; ) { 
            /* Match: If current prefix and lps match then lps_len++ and i++  */
-           if ( needle[i] == tbl[lps_len] ) tbl[i++] = ++lps_len;
+           if ( needle[i] == needle[lps_len] ) tbl[i++] = ++lps_len;
            /* No match. lps_len == 0. Move on. */ 
            else if ( lps_len == 0 ) tbl[i++] = 0; 
            /* NO match but lps_len is non-zero then stay, use previous lps_len */
