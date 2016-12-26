@@ -1,2 +1,5 @@
 I am a software developer interested in improving my skills in coding and algorithms everyday. 
-This is a collection of problems that I practiced to learn STL data structures in C++ and also as a practice for interviews  
+This is a collection of problems that I solved while learning STL's in C++. 
+This involved using STL containers in the most efficient ways to solve problems. I have also used a few STL algorithms like sort, lower_bound, upper_bound (BS) etc when needed.
+I have categorised the problems based on the techniques I used for solving them.
+This practice did help me solve complex problems faster and was a good prep for coding interviews.  
