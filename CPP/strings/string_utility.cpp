@@ -795,31 +795,21 @@ For example,"egg" and "add" are isomorphic, "foo" and "bar" are not.  */
 
 int main()
 {
-	string str1, str2;
-	std::cin >> str1 >> str2 ;
-	unordered_map< char, char> mymap;
-	const char * c = str1.c_str();
-
-	if ( str1.size() != str2.size() )
-	{
-		cout << " NO";
-		return 0;
-	}
-
-	for ( int i=0; i < str1.size() ; i++ )
-	{
-		if ( mymap.find( c[i] ) != mymap.end() )
-		{
-			if ( mymap[str1.at(i)] != str2[i] )
-			{
-				cout << " NO";
-				return 0;
-			}
-		} else {
-			mymap[str1.at(i)] = str2[i];
-		}
-	}
-	cout << "Yes. The inputs are ISOmorpthic" << endl;
-	return 1;
+	string s, t;
+	std::cin >> s >> t ;
+	unordered_map<char, char> smap;
+    unordered_map<char, char> tmap;
+    if ( s.length() != t.length() ) return false;
+       
+		for ( int i=0; i < s.length() ; ++i ){ 
+          if ( smap[s[i]] ){
+              if ( smap[s[i]] != t[i] ) return false;  
+          } else { 
+              if (  tmap[t[i]] && tmap[t[i]] != s[i] ) return false;
+              smap[s[i]] = t[i];
+              tmap[t[i]] = s[i];
+          }
+       }
+       return true;
 }
 #endif
