@@ -16,68 +16,45 @@ using namespace std;
 #include <unordered_map>
 
 /* Reverse the string blindly */
-void str_reverse( string &s, int start , int end )
-	    {
-	        char t;
-	        while ( start < end )
-	        {
-	            t = s[start];
-	            s[start++] = s[end];
-	            s[end--] = t;
-	        }
-	        return;
-	    }
+  void reverse( string &s, int b, int e ){
+        while ( b < e ) std::swap( s[b++], s[e--] );
+    }
 
 /* Reverse a sentence but not internally the words.
  * Also remove any redundant spaces.
  * Input:  My name is Robert
  * Output: Robert is name My.
  * */
-int StrReverseASentence( string s )
-{
-	        int size = s.length();
-	        if ( size <= 2 ){
-	            if ( s[0] == ' ' )
-	                s[0] == '\0' ;
-	            return 1;
-	        }
-
-	        /* Reverse entire string first. */
-	        str_reverse( s, 0, size );
-
-	        /* Now reverse only words. */
-	        int i=0;
-	        while ( i < size )
-	        {
-	            if ( s[i] == ' ' )
-	            {
-	            	;
-	            }
-	            else
-	            {
-	                int start = i;
-	                while ( i < size && s[i] != ' ')
-	                    i++;
-	                str_reverse( s, start, i-1);
-	            }
-	            i++;
-	        }
-
-	        /* Remove all redundant spaces. */
-	        i=0;
-	        int curr=0;
-	        while ( i+1 < size )
-	        {
-	            if ( s[i] == ' ' && s[i] == s[i+1] ){
-	                  ++i;
-	            } else {
-	                s[curr++] = s[i++];
-	            }
-	        }
-	        s.resize(curr);
-	        cout << " the string is:'" << s <<  "'"<< endl;
-	        return 1;
-}
+void reverseWords(string &s) {
+        if ( s.length() <= 2 ){
+            if ( s[0] == ' ')  s.resize(0); 
+            return; 
+        }
+        //Reverse the entire string 
+        reverse( s, 0, s.size()-1 );
+        int i=0; int curr=0;
+        //Reverse all the words alone. 
+        while ( i < s.size() ){
+            if ( s[i] == ' ') i++;
+            else { 
+                int start = i;
+                while ( i < s.size() && s[i] != ' ' ) i++;
+                reverse(s, start, i-1 );
+            }
+        }
+        i=0;
+        //Remove any redundant spaces. 
+        while ( i < s.size()-1 ){
+            if ( s[i] == ' ' && s[i] == s[i+1] ) i++;
+            else {
+                s[curr++] = s[i++];
+            }
+                
+        }
+        if ( i == s.size()-1 && s[i] != ' ') s[curr++] = s[i];
+        s.resize(curr);
+        return;
+    }
 
 #ifdef STR1
 
@@ -124,10 +101,10 @@ int main()
 #ifdef STR2
 
 /* Reverse words in a given string
-Given a string “I like this program very much”, return the string to “much very program this like I” in O(n) time and O(1) space complexity,
+Given a string â€œI like this program very muchâ€, return the string to â€œmuch very program this like Iâ€ in O(n) time and O(1) space complexity,
 where n is the length of the input string.
-Input:   “I like this program very much”
-Output: “much very program this like I”
+Input:   â€œI like this program very muchâ€
+Output: â€œmuch very program this like Iâ€
 */
 
 void reverse_str(string *s, int start, int end)
@@ -229,7 +206,7 @@ int main()
 #ifdef STR4
 /*
 Given two strings, find the length of the longest common substring.
-For example, if the given strings are “HelloWorld” and Hello”, the output should be “Hello” (length = 5)
+For example, if the given strings are â€œHelloWorldâ€ and Helloâ€, the output should be â€œHelloâ€ (length = 5)
 */
 
 
@@ -677,8 +654,8 @@ using namespace std;
 Find the longest substring without repeating characters in the given input:
 
 Given a string, find the length of the longest substring without repeating characters.
-For example, the longest substring without repeating letters for “abcabcbb” is “abc”, which the length is 3.
-For “bbbbb” the longest substring is “b”, with the length of 1.
+For example, the longest substring without repeating letters for â€œabcabcbbâ€ is â€œabcâ€, which the length is 3.
+For â€œbbbbbâ€ the longest substring is â€œbâ€, with the length of 1.
 */
 
 
